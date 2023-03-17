@@ -24,47 +24,49 @@ class Service {
     static let shared = Service()
     private init() { }
     
-    func fetchApps(searchTerm: String, completion: @escaping (Result<[AppResult], Error>) -> ()) {
+    func fetchApps(searchTerm: String, completion: @escaping (Result<SearchResult?, Error>) -> ()) {
         let urlString = "https://itunes.apple.com/search?term=\(searchTerm)&entity=software"
-        guard let url = URL(string: urlString) else { return }
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
-                print("Failed to fetch apps:", error)
-                completion(.failure(AppStoreError.responseError))
-                return
-            }
+        fetchGenericJSONData(urlString: urlString, completion: completion)
+    }
+    
+    func fetchTopPaid(completion: @escaping ((Result<AppGroup?, Error>) -> Void)) {
+        let urlstring = "https://rss.applemarketingtools.com/api/v2/us/apps/top-paid/50/apps.json"
+        fetchAppGroup(urlString: urlstring, completion: completion)
+    }
+    
+    func fetchTopMostPlayedMusic(completion: @escaping ((Result<AppGroup?, Error>) -> Void)) {
+        let urlstring = "https://rss.applemarketingtools.com/api/v2/us/music/most-played/25/albums.json"
+        fetchAppGroup(urlString: urlstring, completion: completion)
+    }
+    
+    func fetchTopAudioBooks(completion: @escaping ((Result<AppGroup?, Error>) -> Void)) {
+        let urlstring = "https://rss.applemarketingtools.com/api/v2/us/audio-books/1461817928/25/audio-books.json"
+        fetchAppGroup(urlString: urlstring, completion: completion)
+    }
+    
+    private func fetchAppGroup(urlString: String, completion: @escaping ((Result<AppGroup?, Error>) -> Void)) {
+        fetchGenericJSONData(urlString: urlString, completion: completion)
+    }
+    
+    func fetchSocialApps(completion: @escaping ((Result<[SocialApp]?, Error>) -> Void)) {
+        let urlString = "https://api.letsbuildthatapp.com/appstore/social"
+       fetchGenericJSONData(urlString: urlString, completion: completion)
+    }
+    
+    func fetchGenericJSONData<T: Decodable>(urlString: String, completion: @escaping ((Result<T?, Error>) -> Void)) {
+        guard let url = URL(string:urlString) else { return }
+        URLSession.shared.dataTask(with: url) { data, resp, err in
             guard let data = data else {
-                completion(.failure(AppStoreError.dataError))
                 return
             }
             do {
-                let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
-                completion(.success(searchResult.results))
-            } catch let error {
+                let objects = try JSONDecoder().decode(T.self, from: data)
+                completion(.success(objects))
+            } catch {
                 completion(.failure(error))
             }
         }
         .resume()
     }
     
-    func fetchGames(completion: @escaping ((Result<AppGroup?, Error>) -> Void)) {
-        guard let url = URL(string: "https://rss.applemarketingtools.com/api/v2/us/apps/top-paid/50/apps.json") else { return }
-        URLSession.shared.dataTask(with: url) { data, resp, err in
-            if let err = err {
-                return
-            }
-            guard let data = data else {
-                return
-            }
-            
-            do {
-                let appGroup = try JSONDecoder().decode(AppGroup.self, from: data)
-                completion(.success(appGroup))
-            } catch {
-                completion(.failure(error))
-            }
-            
-        }
-        .resume()
-    }
 }

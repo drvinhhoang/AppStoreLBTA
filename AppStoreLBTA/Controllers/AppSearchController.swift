@@ -41,7 +41,6 @@ class AppSearchController: BaseListController, UICollectionViewDelegateFlowLayou
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        enterSearchTermLabel.isHidden = !appResults.isEmpty
         return appResults.count
     }
     
@@ -60,10 +59,10 @@ class AppSearchController: BaseListController, UICollectionViewDelegateFlowLayou
     fileprivate func fetchITunesApps(searchTerm: String = "") {
         Service.shared.fetchApps(searchTerm: searchTerm) { [weak self] result in
             guard let self = self else { return }
-            
             switch result {
-            case .success(let searchResults):
-                self.appResults = searchResults
+            case .success(let searchResult):
+                guard let results = searchResult?.results else { return }
+                self.appResults = results
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                 }
@@ -76,6 +75,7 @@ class AppSearchController: BaseListController, UICollectionViewDelegateFlowLayou
 
 extension AppSearchController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        enterSearchTermLabel.isHidden = !appResults.isEmpty || !searchText.isEmpty
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
             self.fetchITunesApps(searchTerm: searchText)
