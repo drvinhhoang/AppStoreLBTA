@@ -18,6 +18,8 @@
 		5A717D3629C3C35E000C84AA /* AppHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A717D3529C3C35E000C84AA /* AppHeaderCell.swift */; };
 		5A717D3829C45439000C84AA /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A717D3729C45439000C84AA /* AppGroup.swift */; };
 		5A717D3D29C4BDF1000C84AA /* SocialApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A717D3C29C4BDF1000C84AA /* SocialApp.swift */; };
+		5A717D3F29C55E34000C84AA /* HorizontalSnappingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A717D3E29C55E34000C84AA /* HorizontalSnappingController.swift */; };
+		5A717D4129C57421000C84AA /* SnappingLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A717D4029C57421000C84AA /* SnappingLayout.swift */; };
 		5AA22FEB29C202CC008A84D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA22FEA29C202CC008A84D2 /* AppDelegate.swift */; };
 		5AA22FED29C202CC008A84D2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA22FEC29C202CC008A84D2 /* SceneDelegate.swift */; };
 		5AA22FEF29C202CC008A84D2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA22FEE29C202CC008A84D2 /* ViewController.swift */; };
@@ -46,6 +48,8 @@
 		5A717D3529C3C35E000C84AA /* AppHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHeaderCell.swift; sourceTree = "<group>"; };
 		5A717D3729C45439000C84AA /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
 		5A717D3C29C4BDF1000C84AA /* SocialApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialApp.swift; sourceTree = "<group>"; };
+		5A717D3E29C55E34000C84AA /* HorizontalSnappingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSnappingController.swift; sourceTree = "<group>"; };
+		5A717D4029C57421000C84AA /* SnappingLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnappingLayout.swift; sourceTree = "<group>"; };
 		5AA22FE729C202CC008A84D2 /* AppStoreLBTA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStoreLBTA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AA22FEA29C202CC008A84D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AA22FEC29C202CC008A84D2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 				5AA2300029C203EE008A84D2 /* BaseTabBarController.swift */,
 				5AA2300329C20C56008A84D2 /* AppSearchController.swift */,
 				5A717D2629C36561000C84AA /* BaseListController.swift */,
+				5A717D3E29C55E34000C84AA /* HorizontalSnappingController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -157,6 +162,7 @@
 			children = (
 				5AA2300929C222FF008A84D2 /* UIView+Layout.swift */,
 				5A717D2F29C3B599000C84AA /* Extensions.swift */,
+				5A717D4029C57421000C84AA /* SnappingLayout.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -262,9 +268,11 @@
 				5AA2300429C20C56008A84D2 /* AppSearchController.swift in Sources */,
 				5AA22FEF29C202CC008A84D2 /* ViewController.swift in Sources */,
 				5AA22FEB29C202CC008A84D2 /* AppDelegate.swift in Sources */,
+				5A717D4129C57421000C84AA /* SnappingLayout.swift in Sources */,
 				5A717D2529C36326000C84AA /* AppsPageController.swift in Sources */,
 				5AA2301229C232BC008A84D2 /* Services.swift in Sources */,
 				5A717D3229C3BDF6000C84AA /* AppPageHeader.swift in Sources */,
+				5A717D3F29C55E34000C84AA /* HorizontalSnappingController.swift in Sources */,
 				5AA2300729C20F40008A84D2 /* SearchResultCell.swift in Sources */,
 				5AA2300C29C2274C008A84D2 /* VerticalStackView.swift in Sources */,
 				5A717D2C29C36F58000C84AA /* AppHorizontalController.swift in Sources */,

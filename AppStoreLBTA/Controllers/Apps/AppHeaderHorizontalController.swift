@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AppHeaderHorizontalController: BaseListController {
+class AppHeaderHorizontalController: HorizontalSnappingController {
     let cellId = "cellId"
     var socialApps: [SocialApp] = []
     
