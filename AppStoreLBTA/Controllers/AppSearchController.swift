@@ -61,8 +61,7 @@ class AppSearchController: BaseListController, UICollectionViewDelegateFlowLayou
             guard let self = self else { return }
             switch result {
             case .success(let searchResult):
-                guard let results = searchResult?.results else { return }
-                self.appResults = results
+                self.appResults = searchResult?.results ?? []
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                 }
